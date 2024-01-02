@@ -1,0 +1,22 @@
+[build-system]
+requires = ["hatchling", "lark-parser"]
+build-backend = "hatchling.build"
+
+[project]
+name = "mnote_lorisj"
+version = "0.0.1"
+authors = [
+  { name="Loris Jautakas", email="lorisj.com" },
+]
+description = "A Comprehensive Tool for Parsing and Interpreting .mnote Files into LaTeX"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: Apache-2.0 license",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/lorisj/MNote"
+Issues = "https://github.com/lorisj/MNote/issues"

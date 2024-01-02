@@ -2,7 +2,7 @@ from lark.visitors import Interpreter
 from .utils import title_case, escape_underscore, format_name
 
 
-class MyInterpreter(Interpreter):
+class LaTeXInterpreter(Interpreter):
     def ind_println(self, string_in):
         print('\t' * self.indent_level, end='')
         print(string_in)
