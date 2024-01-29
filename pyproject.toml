@@ -1,20 +1,22 @@
 [build-system]
-requires = ["hatchling", "lark-parser"]
+requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
 name = "mnote_lorisj"
-version = "0.0.1"
-authors = [
-  { name="Loris Jautakas", email="lorisj.com" },
-]
+version = "0.0.2"
+
 description = "A Comprehensive Tool for Parsing and Interpreting .mnote Files into LaTeX"
 readme = "README.md"
 requires-python = ">=3.8"
-classifiers = [
-    "Programming Language :: Python :: 3",
-    "License :: Apache-2.0 license",
-    "Operating System :: OS Independent",
+license = {file = "LICENSE"}
+
+authors = [
+  {name = "Loris Jauatkas", email = "lorisj@umich.edu" }
+]
+
+dependencies = [
+  "lark-parser"
 ]
 
 [project.urls]

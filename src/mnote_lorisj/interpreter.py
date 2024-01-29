@@ -2,6 +2,9 @@ from lark.visitors import Interpreter
 from .utils import title_case, escape_underscore, format_name
 
 
+
+
+
 class LaTeXInterpreter(Interpreter):
     def ind_println(self, string_in):
         print('\t' * self.indent_level, end='')
@@ -25,9 +28,24 @@ class LaTeXInterpreter(Interpreter):
     
     # TODO: add bib_reference as well
     
-    def __init__(self):
+    def __init__(self, author_name = "", document_name = ""):
         super().__init__()
         self.indent_level = 0
+        self.latex_start_text = r"""
+\documentclass[12pt]{article}
+\usepackage{notespkg}
+\usepackage{screenread} %Puts every document on one page comment out if not needed.
+%\addbibresource{bibliography.bib} % Rename bibliography.bib to your current .bib file, in the same directory. 
+\usepackage{alltopics}
+\title{""" +  document_name + r"""} 
+\author{""" + author_name + r"""}
+\begin{document}
+\maketitle
+
+%\tableofcontents
+"""
+        self.latex_end_text = r"""\end{document}"""
+
 
     def start(self, tree):
         for child in tree.children:
@@ -158,20 +176,15 @@ class LaTeXInterpreter(Interpreter):
 
 
 
-
-def get_start_text(file_name : str) -> str:
-    latex_start_text = r"""\documentclass[12pt]{article}
-\usepackage{notespkg}
-\usepackage{screenread} %Puts every document on one page comment out if not needed.
-%\addbibresource{bibliography.bib} % Rename bibliography.bib to your current .bib file, in the same directory. 
-\usepackage{alltopics}
-\title{""" +  file_name + r"""} % \currfilebase removes the .tex
-\author{Loris Jautakas}
-\begin{document}
-\maketitle
-
-%\tableofcontents
-"""
-    return latex_start_text
-
-latex_end_text = r"""\end{document}"""
+class MNoteInterpreter(Interpreter):
+    
+    def __init__(self, author_name):
+        self.author_name = author_name
+        self.string_output = ""
+        super().__init__()
+        self.indent_level = 0
+        
+    def start(self, tree):
+        for child in tree.children:
+            self.visit(child)
+        self.string_output += "\n" # Ensure we end with a newline

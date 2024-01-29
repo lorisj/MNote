@@ -1,5 +1,5 @@
 import unittest
-from mnote import get_parser
+from mnote_lorisj import get_parser
 
 class TestParser(unittest.TestCase):
     def test_basic_parsing(self):
@@ -110,7 +110,7 @@ as well as special topics from \cite{nourani_2014}.
     A category is small if both $\Ob(C)$ and $\Hom(C)$ are sets."""
         # Parse the content
         parsed_tree = parser.parse(content)
-        # Add assertions here to verify the parsed tree
+        
 
 if __name__ == '__main__':
     unittest.main()
